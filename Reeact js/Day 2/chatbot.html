@@ -11,12 +11,39 @@
   <script src="https://unpkg.com/supersimpledev/react.js"></script>
   <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
   <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script src="https://unpkg.com/supersimpledev/chatbot.js" ></script>
   <script type="text/babel"> 
   
-    function ChatbotInput() {
-      
+    function ChatbotInput({chatMessages, setChatMessages}) {
+      const [inputText, setInputText] = React.useState('');
+
       function saveInputText(event) {
-        console.log(event.target.value); //gives the elements that i am typing in
+        setInputText(event.target.value); //gives the elements that i am typing in
+      }
+
+      function sendMessage() {
+        const newChatMessages = [
+          ...chatMessages,
+          {
+            message: inputText,
+            sender: "user",
+            id: crypto.randomUUID()
+          }
+        ]
+
+        setChatMessages(newChatMessages);
+
+        const response = Chatbot.getResponse(inputText);
+        setChatMessages([
+          ...newChatMessages,
+          {
+            message: response,
+            sender: "chatbot",
+            id: crypto.randomUUID()
+          }
+        ]);
+
+        setInputText(''); //This is to update the text into empty string so after we send our message the message in the text box will be removed
       }
 
       return (
@@ -25,11 +52,15 @@
             placeholder="Send a message to chatbot" 
             size="30"
             onChange = {saveInputText} //Runs a function when we change the text inside an input elements
+            value = {inputText} //Add a props value to update it to html
           />
-          <button>Send</button>
+          <button
+            onClick = {sendMessage}
+          >Send</button>
         </>
       );
     }
+
 
     function ChatMessage({message, sender}) { {/*Reusable components*/}
       return (
@@ -41,7 +72,24 @@
       );
     }
 
-    function ChatMessages() { {/*Object {} = group of related values together*/}
+
+    function ChatMessages({chatMessages}) { {/*Object {} = group of related values together*/}
+      return (
+        <>
+          {chatMessages.map((chatMessage) => {  {/*Map - Converting value into a new value */}
+            return (
+              <ChatMessage
+                message = {chatMessage.message}
+                sender = {chatMessage.sender }
+                key = {chatMessage.id}
+              />
+            );
+          })}
+        </>
+      );    
+    }
+
+    function App() {
       const [chatMessages, setChatMessages] = React.useState([{ 
         //Inside the array chatMeesages, setChatMessages is array Destructuring
         message: "Hello Chatbot", 
@@ -60,49 +108,23 @@
         sender: "chatbot", 
         id: "id4"
       }]);
-
-
-
-      function sendMessage() { {/*Push add a value in an array*/}
-        setChatMessages([
-          ...chatMessages,
-          {
-            message: "test",
-            sender: "user",
-            id: crypto.randomUUID()
-          }
-        ]);
-      } 
-
       return (
         <>
-          <button onClick={sendMessage}>Send a Message</button> {/*Onclick = Event | sendMessage = EventHandler*/}
-          
-          {chatMessages.map((chatMessage) => {  {/*Map - Converting value into a new value */}
-            return (
-              <ChatMessage
-                message = {chatMessage.message}
-                sender = {chatMessage.sender }
-                key = {chatMessage.id}
-              />
-            );
-          })}
-        </>
-      );    
-    }
-
-    function App() {
-      return (
-        <>
-          <ChatbotInput /> {/*Same thing as ChatbotInput() but it look like we are creating our own html elements*/}
-          <ChatMessages />
+          <ChatbotInput
+            chatMessages = {chatMessages}
+            setChatMessages = {setChatMessages}  
+          /> {/*Same thing as ChatbotInput() but it look like we are creating our own html elements*/}
+          <ChatMessages
+            chatMessages = {chatMessages}
+          />
         </>
       );
     } 
  
 
-    //React = we should not odify the data directly, always create a copy to modify the date
+    //React = we should not modify the data directly, always create a copy to modify the date
     //State = Data that is connected to the HTML, if i update the date it will update the HTML
+    //State = save data that changes over time 
     //Event Handlers = Run a function when we interact with the website
     // Key = helps react track changes in the array 
     // React code goes here 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot</title>
+</head>
+<body>
+    
+  <div class="container"></div>
+  
+  
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel"> 
+    
+    function InputText() {
+        const [inputText, setInputText] = React.useState('');
+
+        function saveInputText(event) {
+            setInputText(event.target.value);
+        }
+
+        function resetButton() {
+            setInputText('');
+        }
+
+        function randomName() {
+            setInputText("Nathaniel");
+        }
+
+        return (
+            <>
+                <input
+                    placeholder = "Send a message "
+                    size = "30"
+                    onChange = {saveInputText}
+                    value = {inputText}
+                /> 
+                <button onClick = {resetButton}>Reset</button>
+                <button onClick = {randomName}>Example</button>
+                <p> 
+                 {inputText}   
+                </p>
+            </>
+        );
+        
+    }
+
+
+
+    function App() {
+        return (
+            <>
+                <InputText />
+            </>
+        )
+    }
+
+    const container = document.querySelector('.container');//Inside the  queryseletor we can use specific class. Use (.) before the class to select the class. If we want to select the id we can use (#) before the id name.
+    ReactDOM.createRoot(container).render(<App/>);
+    </script>
+</body>
+</html> 
