@@ -1,0 +1,15 @@
+Components = a piece of the website  
+
+Components = a piece of the website  
+React lets us split website into smaller pieces.
+- So we can work on a small piece of the website at a time
+
+What i have learned:
+Component = a piece of the website
+Component = create our own HTML element
+Started the Chatbot Project
+Split the Chatbot into <ChatInput> <ChatMessage>
+props = make components reusable
+Destructuring, Guard Operator (&&)
+Code cleanup
+Created <App> component

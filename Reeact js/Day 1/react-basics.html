@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>React Basics</title>
+</head>
+<body>
+    
+  <div class="container"></div>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel"> //Label trans;ate other languages into js
+
+
+    //React don't use normal js it use jsx = Javasxrript XML
+    //XML is same as js but we can write HTML directly in js code.
+    const button = <button>Click me</button>;   //This is JSX code
+    const paragpraph = <p>This is a paragraph</p>;
+    
+    //We can also write multiple html elements in one vairiable as long as it is inside  div.
+    const div = (
+        <div>
+            <h1>PC WORTH</h1>
+            <p>Price: $1000</p>
+            <button onClick={displayPrice}>Buy Now</button>
+            <p id="total"></p>
+
+        </div>
+    );
+    // React code goes here 
+    // The querySelector is used to select the html element from page and pass it inside the js-contanainer and let js modify the html elements.
+    const container = document.querySelector('.container');//Inside the  queryseletor we can use specific class. Use (.) before the class to select the class. If we want to select the id we can use (#) before the id name.
+    ReactDOM.createRoot(container).render(div);
+    //ReactDOM.createRoot is used to setup the react.
+    //Then call the container variable to get the html elements on it
+    //Everything we create in the react container will be displayed in the html page
+    //Before that we call render to display something like inside the parentheses
+    </script>
+</body>
+</html> 
