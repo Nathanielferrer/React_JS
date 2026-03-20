@@ -2,6 +2,67 @@
 <html>
 <head>
   <title>Chatbot</title>
+  <style>
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .input-text {
+    padding: 10px 15px;
+    border-radius: 10px;
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  .style-button {
+    background-color: green;
+    color: white;
+    padding: 7px;
+    border: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .chat-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  /* Add these new styles to position messages correctly */
+  .chat-message.chatbot {
+    justify-content: flex-start;
+  }
+
+  .chat-message.user {
+    justify-content: flex-end;
+  }
+
+  .message-text {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+
+  .chat-message.chatbot .message-text {
+    background-color: #f0f0f0;
+  }
+
+  .chat-message.user .message-text {
+    background-color: #007bff;
+    color: white;
+  }
+</style>
 </head>
 <body>
     
@@ -28,7 +89,7 @@
             message: inputText,
             sender: "user",
             id: crypto.randomUUID()
-          }
+          }      
         ]
 
         setChatMessages(newChatMessages);
@@ -47,26 +108,28 @@
       }
 
       return (
-        <>  {/*This is called Fragments. A group elements together without using another div to be nested*/}
+        <div className="container">  {/*This is called Fragments. A group elements together without using another div to be nested*/}
           <input 
             placeholder="Send a message to chatbot" 
             size="30"
             onChange = {saveInputText} //Runs a function when we change the text inside an input elements
             value = {inputText} //Add a props value to update it to html
+            className="input-text"
           />
           <button
             onClick = {sendMessage}
+            className="style-button"
           >Send</button>
-        </>
+        </div>
       );
     }
 
 
     function ChatMessage({message, sender}) { {/*Reusable components*/}
       return (
-        <div>
+        <div className={`chat-message ${sender}` }>
           {sender === 'chatbot' && <img src="chatbot.png" width="50"/> } {/*The shortcut for If-Statement that if the condition in left is true then the result is the value on the right*/}
-          {message}
+          <span className="message-text">{message}</span>
           {sender === 'user' && <img src="profile.jpg" width="50"/>}
         </div>
       );
@@ -109,7 +172,7 @@
         id: "id4"
       }]);
       return (
-        <>
+        <div className="main-container">
           <ChatbotInput
             chatMessages = {chatMessages}
             setChatMessages = {setChatMessages}  
@@ -117,7 +180,7 @@
           <ChatMessages
             chatMessages = {chatMessages}
           />
-        </>
+        </div>
       );
     } 
  

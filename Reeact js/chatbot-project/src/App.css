@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .input-text {
+    padding: 10px 15px;
+    border-radius: 10px;
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  .style-button {
+    background-color: green;
+    color: white;
+    padding: 7px;
+    border: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .chat-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  /* Add these new styles to position messages correctly */
+  .chat-message.chatbot {
+    justify-content: flex-start;
+  }
+
+  .chat-message.user {
+    justify-content: flex-end;
+  }
+
+  .message-text {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+
+  .chat-message.chatbot .message-text {
+    background-color: #f0f0f0;
+  }
+
+  .chat-message.user .message-text {
+    background-color: #007bff;
+    color: white;
+  }
