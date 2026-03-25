@@ -3,5 +3,13 @@ Routing
 - Create multiple pages using 1 HTML file (reusable HTML code).
 <Routes> - Tells react all pages that are in websites
 
+Shortcut:
+ctrl + shift + p 
+>format document - Fixing the identation
+
+ctrl = f
+current - what code you want to modify
+changes - what you want to replace
+
 packages:
 npm install react-router@7.8.0
