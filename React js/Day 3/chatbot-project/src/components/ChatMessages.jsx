@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import {ChatMessage} from './components/ChatMessage'
+import {ChatMessage} from './ChatMessage'
 
 function ChatMessages({chatMessages}) { {/*Object {} = group of related values together*/}
     const chatMessagesRef = useRef(null);

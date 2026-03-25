@@ -1,0 +1,46 @@
+.header {
+   background: linear-gradient(to right, #1F1F1F, #2B2B2B);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content img {
+    height: 60px;
+    border-radius: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px;
+}
+
+.logo h3{
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 25px;
+}
+.nav-links {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links li a{
+    margin: 0 15px;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.nav-links li a:hover {
+    color: orange;
+}

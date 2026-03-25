@@ -2,6 +2,8 @@ Command line:
 pwd - getting your current directory.
 ls - listing all the file in the folder.
 cd - change directory.
+npx create-vite@latest - Create react js
+
 
 
 Files Purposes:
@@ -11,4 +13,5 @@ assets folder - This is where you store the image you want to display.
 public folder - contains file taht should be available to the public. It means we can access these using URL.
 eslint = hightlights problems in js code. (Need to install eslint extension to works).
 Vite - tool that we used to set up this project. Also helps us build the website. Also creates a server(A server puts our website at a URL).
+<StrictMode> = gives some additional checks and  warnings when developing the app.
 
